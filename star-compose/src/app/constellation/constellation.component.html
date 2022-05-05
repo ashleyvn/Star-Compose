@@ -1,0 +1,24 @@
+<div class="star-box" cdkDragBoundary=".example-boundary" [cdkDragConstrainPosition]="computeDragRenderPos" cdkDrag [ngStyle]="style" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" (resizing)="resizing($event)">
+    <div class="box outside" cdkDragBoundary=".example-boundary" [ngStyle]="style" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" (resizing)="resizing($event)">
+        <header class="constellation-name">{{name}}</header>
+        <div class="options">
+            <abbr [title]='dragTitle'>
+                <mat-icon class="drag-icon" cdkDragHandle>open_with</mat-icon>
+            </abbr>
+            <abbr [title]='rotateTitle'>
+                <mat-icon class="rotate-icon" (click)="this.rotating = !this.rotating">rotate_90_degrees_ccw</mat-icon>
+            </abbr>
+            <abbr [title]='deleteTitle'>
+                <mat-icon class="delete-icon" (click)="delete()">delete-icon</mat-icon>
+            </abbr>
+            <abbr [title]='resizeTitle'>
+                <div *ngIf="!this.rotated" class="resize-grip" mwlResizeHandle [resizeEdges]="{ bottom: true, right: true }"></div>
+            </abbr>
+        </div>
+        <input #rotation *ngIf="this.rotating" type="range" orient="vertical" class="custom-range  my-2" min="0" max="360" [(ngModel)]="rotateValue" [value]='rotateValue' (change)="setRotate(rotation.value)">
+    </div>
+    <svg class="box inside" [ngStyle]="style" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}" (resizing)="resizing($event)" [attr.height]="aConst.height" [attr.width]="aConst.width" [ngStyle]="{'transform':'rotate(' + rotateValue + 'deg)'}">
+        <circle #star *ngFor="let star of aConst.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
+        <line #connection *ngFor="let line of aConst.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
+    </svg>
+</div>

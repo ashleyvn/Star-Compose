@@ -1,0 +1,40 @@
+<mat-toolbar class="menubar">
+
+    <span Style="color: white">Star Compose</span>
+    <span class="spacer"></span>
+    <!-- <button mat-raised-button class="constellationButton" (click)="runConductor()" (click)="playSound()">Run</button> -->
+    <button mat-raised-button class="constellationButton" (click)="runConductor()">Run</button>
+    <!-- <mat-button-toggle class="constellationButton" value="bold" (change)="runConductor()"> -->
+        <!-- <mat-icon style="transform: scale(0.5)" aria-hidden="false" aria-label="view constellations">star</mat-icon> -->
+    <!-- </mat-button-toggle> -->
+
+    <button mat-raised-button class="constellationButton" (click)="toggleNavbar()"> Menu
+        <mat-icon>{{!navbarOpened ? 'menu': 'close'}}</mat-icon>
+    </button>
+
+</mat-toolbar>
+
+<div class="constellationList" *ngIf="navbarOpened">
+    <table>
+        <thead>
+            <tr>
+                <th>Constellations</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let constellation of constellations">
+            <tr >
+                <td>{{constellation.name}}</td>
+            </tr>
+            <tr>
+                    <td (click)="onSelectedConstellation(constellation)">
+                    <div class="star-box">
+                        <svg class="boundary" [attr.height]=300 [attr.width]=300>
+                            <circle class="static" *ngFor="let star of constellation.stars" [attr.cx]="star.x" [attr.cy]="star.y" r="5" fill="white"></circle>
+                            <line class="static" *ngFor="let line of constellation.connections" [attr.x1]="line.x1" [attr.y1]="line.y1" [attr.x2]="line.x2" [attr.y2]="line.y2" style="stroke:rgb(255, 255, 255);stroke-width:2"></line>
+                        </svg>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
