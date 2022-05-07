@@ -2,15 +2,18 @@
 
     <span Style="color: white">Star Compose</span>
     <span class="spacer"></span>
+
     <!-- <button mat-raised-button class="constellationButton" (click)="runConductor()" (click)="playSound()">Run</button> -->
-    <button mat-raised-button class="constellationButton" (click)="runConductor()">Run</button>
+    <button mat-raised-button class="constellationButton" (click)="runConductor()">Play</button>
     <!-- <mat-button-toggle class="constellationButton" value="bold" (change)="runConductor()"> -->
         <!-- <mat-icon style="transform: scale(0.5)" aria-hidden="false" aria-label="view constellations">star</mat-icon> -->
     <!-- </mat-button-toggle> -->
 
-    <button mat-raised-button class="constellationButton" (click)="toggleNavbar()"> Menu
-        <mat-icon>{{!navbarOpened ? 'menu': 'close'}}</mat-icon>
-    </button>
+    <!-- <button mat-raised-button class="constellationButton" (click)="toggleNavbar()">
+        <mat-icon>auto_awesome</mat-icon>
+    </button> -->
+<span class="spacer"></span>
+    <mat-button-toggle (click)="toggleNavbar()"><mat-icon>auto_awesome</mat-icon></mat-button-toggle>
 
 </mat-toolbar>
 
@@ -22,7 +25,7 @@
             </tr>
         </thead>
         <tbody *ngFor="let constellation of constellations">
-            <tr >
+            <tr>
                 <td>{{constellation.name}}</td>
             </tr>
             <tr>

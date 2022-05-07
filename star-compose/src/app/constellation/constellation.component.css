@@ -98,3 +98,7 @@ input[type=range][orient=vertical] {
     clip-path: polygon(100% 0,100% 100%,0 100%);
     background: repeating-linear-gradient(135deg,hsla(0,0%,100%,.5),hsla(0,0%,100%,.5) 2px,#000 0,#000 4px);
 }
+
+circle {
+    filter: drop-shadow(0px 0px 8px rgba(220, 211, 211, 0.8));
+  }
