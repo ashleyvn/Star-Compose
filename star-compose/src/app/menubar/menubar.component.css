@@ -18,25 +18,34 @@
     top: 5%;
     width: 400px;
     height: 95%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: white;
     overflow: auto;
-    background-color: rgba(46, 43, 43, 0.75);
+    /* background-color: rgba(46, 43, 43, 0.75); */
     z-index: 2;
 
 }
 
-.currConstellationText{
+.starButton {
+    background-color:white;
+    color: black;
+}
+.currentConstellations {
+    color: black;
+  }
+  
+  .currConstellationText{
+    position: absolute;
     margin-top: 5px;
     margin-left: 5px;
   }
-
-mat-button-toggle {
-    height: 25px;
-    background-color: whitesmoke;
-}
-mat-icon {
-    display: block;
-}
+  
+  mat-button-toggle {
+      background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  mat-card {
+      margin: 3px;
+  }
 
 table {
     position: absolute;
