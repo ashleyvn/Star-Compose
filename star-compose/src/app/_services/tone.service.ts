@@ -23,6 +23,8 @@ export class SynthService {
 
   bassMinorCollection = ['A2', 'D3', 'E3', 'F3', 'A3'];
   melodyMinorCollection = ['A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4', 'A4'];
+  melody: Tone.Part<{ time: string; note: string; duration: string; velocity: number; }> | undefined;
+  bassLine: Tone.Part<{ time: string; note: string; duration: string; velocity: number; }> | undefined;
 
   //reverb and effects
   verb = new Tone.Reverb(9).toDestination();
@@ -113,6 +115,10 @@ export class SynthService {
       this.setTempo(60, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
       
+      if (this.melody != null && this.bassLine != null) {
+        this.melody.clear();
+        this.bassLine.clear();
+      }
 
       
       console.log("playing star:", constellation);
@@ -132,7 +138,7 @@ export class SynthService {
           
           playData2.push({'time': pTime1 + ':' + pBeat1, 'note': this.noteSetB[this.getRandomInt(0, 5)], 'duration': duration +'m', 'velocity': 0.6});
       }
-    const bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
+    this.bassLine = new Tone.Part(((time: any, value: { note: any; velocity: any; duration: any; }) => {
       // the value is an object which contains both the note and the velocity
       this.bass.triggerAttackRelease(value.note, value.duration, time, value.velocity);
       }), playData2).start(0);
@@ -144,7 +150,7 @@ export class SynthService {
           let pBeat = star.getX() % 4;
           playData.push({'time': pTime + ':' + pBeat, note: this.noteSet[this.getRandomInt(0, 8)], duration: '16n', 'velocity': 0.5});
       }
-      const melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
+      this.melody = new Tone.Part(((time: any, value: { note: any; velocity: any; }) => {
         // the value is an object which contains both the note and the velocity
         this.synth.triggerAttackRelease(value.note, "16n", time, value.velocity);
       }), playData).start(0);

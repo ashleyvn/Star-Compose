@@ -53,11 +53,6 @@ export class SkyComponent implements OnInit {
   //List of all constellations
   public constellationList:{height:number, width:number, month:number, nLat:number, sLat:number, quadrant:string, name:string, stars:any, connections:any}[] = data;
 
-  //Get User Location
-  callApi(Longitude: number, Latitude: number){
-    const url = `https://api-adresse.data.gouv.fr/reverse/?lon=${Longitude}&lat=${Latitude}`
-  }
-
   //Add constellation to sky on click
   onSelectedConstellation(constellation:Constellation)
   {    
@@ -111,7 +106,6 @@ export class SkyComponent implements OnInit {
       console.log("i'm tracking you!");
         const longitude = position.coords.longitude;
         const latitude = position.coords.latitude;
-        this.callApi(longitude, latitude);
         this.myLat = latitude
         this.getConstellations()
         // if (this.constellations.length < 1)
@@ -207,16 +201,18 @@ export class SkyComponent implements OnInit {
   }
 
   renderAudio($event: boolean) {
+    if ($event == false) {
+      this.synth.stop();
+      return;
+    }
+    console.log("playing audio");
     let constData: {stars: Star[], connections: Connection[]} = {stars: [], connections: []}
-    // console.log("sky got button press");
-    // this.consts.forEach((element, index) => console.log(element.getScreenCoord()));
     this.consts.forEach((element, index) => {
-      // console.log(element.getScreenCoord().stars);
       constData.stars.push(...element.getScreenCoord().stars);
       constData.connections.push(...element.getScreenCoord().connections);
     });
     console.log(constData);
-    
+    // this.playMode = true;
     this.synth.playStars(constData);
   }
 

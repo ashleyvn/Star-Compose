@@ -14,15 +14,25 @@ export class MenubarComponent implements OnInit {
   @Input() locationConstellations:Constellation[] = [];
   @Output() renderAudio = new EventEmitter<boolean>();
   @Output() onSelected = new EventEmitter<any>();
+  playStatus = "Play"
 
   constructor( private synth: SynthService ) {}
 
   runConductor() {
-    this.buttonPressed.emit(true);
-    this.renderAudio.emit(true);
+    if (this.playStatus === "Play") {
+      // chnage button to stop and start audio
+      this.playStatus = "Stop";
+      this.buttonPressed.emit(true);
+      this.renderAudio.emit(true);
+    }
+    else if (this.playStatus === "Stop") {
+      this.playStatus = "Play"
+      this.buttonPressed.emit(false);
+      this.renderAudio.emit(false);
+    }
 
     //Disable Buttons
-    let constellationButton = document.getElementsByClassName("constellationButton")
+    let constellationButton = document.getElementsByClassName("starButton")
     constellationButton[0].setAttribute("disabled", "")
     
     //Close Menu Bar
