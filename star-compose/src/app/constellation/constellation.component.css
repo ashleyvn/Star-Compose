@@ -55,6 +55,7 @@
     border-radius: 3px;
     cursor: move;
     margin-left: 2px;
+    margin-top: 2px;
 }
 
 .rotate-icon {
@@ -64,11 +65,11 @@
     border-radius: 3px;
     margin-top: 2px;
     cursor: grab;
-    margin-left: 2px;
+    margin-left: 2px;    
 }
 
 .delete-icon {
-    float: right;
+    float: left;
     color: #ccc;
     background-color: rgba(0,0,0,0.5);
     border-radius: 3px;
