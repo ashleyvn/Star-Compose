@@ -15,6 +15,7 @@ export class MenubarComponent implements OnInit {
   @Output() renderAudio = new EventEmitter<boolean>();
   @Output() onSelected = new EventEmitter<any>();
   playStatus = "Play"
+  helpButton = true;
 
   constructor( private synth: SynthService ) {}
 

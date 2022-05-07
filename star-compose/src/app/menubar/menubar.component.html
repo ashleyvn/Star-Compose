@@ -3,7 +3,13 @@
     <span Style="color: white">Star Compose</span>
     <span class="spacer"></span>
 
+    <mat-button-toggle class="helpButton" (click)="helpButton = !helpButton"><mat-icon>help</mat-icon></mat-button-toggle>
+
+    <span class="spacer"></span>
+
     <button mat-raised-button class="constellationButton" #btnFocus [autofocus]="btnFocus.focus()" (click)="runConductor()">{{playStatus}}</button>
+    
+    <app-dialog *ngIf="helpButton"></app-dialog>
 
 <span class="spacer"></span>
 <mat-button-toggle class="starButton" (click)="toggleNavbar()"><mat-icon>auto_awesome</mat-icon></mat-button-toggle>
