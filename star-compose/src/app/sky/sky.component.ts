@@ -167,6 +167,10 @@ export class SkyComponent implements OnInit {
       this.currStar = []
       this.currConnection = []
       this.allConstellations.push(temp)
+      this.allConstellations.sort((a,b)=> a.name.localeCompare(b.name));
+      this.locationConstellations.sort((a,b)=> a.name.localeCompare(b.name));
+      this.constellations.sort((a,b)=> a.name.localeCompare(b.name));
+
     }
   }
 
