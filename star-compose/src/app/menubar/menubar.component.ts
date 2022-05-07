@@ -11,6 +11,7 @@ export class MenubarComponent implements OnInit {
   @Output() buttonPressed = new EventEmitter<boolean>();
   @HostBinding('class.navbar-opened') navbarOpened = false;  
   @Input() constellations:Constellation[] = [];
+  @Input() locationConstellations:Constellation[] = [];
   @Output() renderAudio = new EventEmitter<boolean>();
   @Output() onSelected = new EventEmitter<any>();
 
@@ -67,6 +68,14 @@ export class MenubarComponent implements OnInit {
       if (this.constellations[i].name == nm)
       {
         this.onSelected.emit(this.constellations[i])
+      }
+    }
+
+    for (let i in this.locationConstellations)
+    {
+      if (this.locationConstellations[i].name == nm)
+      {
+        this.onSelected.emit(this.locationConstellations[i])
       }
     }
   }

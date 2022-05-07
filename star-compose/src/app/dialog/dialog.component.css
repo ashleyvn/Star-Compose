@@ -1,0 +1,23 @@
+.dialog {
+    text-align: center;
+}
+
+.dialog-title {
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+.dialog-body {
+    margin: 25px;
+    font-size: large;
+}
+
+button {
+    width: 35%;
+    font-size: x-large;
+    border-radius: 20px;
+    background-color: rgba(152, 174, 247, 0.911);
+    color: rgba(24, 24, 24, 0.75);
+    font-style: bold;
+    cursor: pointer;
+}

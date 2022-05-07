@@ -25,6 +25,11 @@
 
 }
 
+.currConstellationText{
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
 mat-button-toggle {
     height: 25px;
     background-color: whitesmoke;

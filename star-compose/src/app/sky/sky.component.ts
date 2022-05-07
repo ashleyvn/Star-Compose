@@ -36,6 +36,7 @@ export class SkyComponent implements OnInit {
 
 
   // Constellations in menu
+  locationConstellations:Constellation[]= [];
   constellations:Constellation[] = [];
   width:number;
 
@@ -113,16 +114,16 @@ export class SkyComponent implements OnInit {
         this.callApi(longitude, latitude);
         this.myLat = latitude
         this.getConstellations()
-        if (this.constellations.length < 1)
-        {
-          this.constellations = this.allConstellations
-        }
+        // if (this.constellations.length < 1)
+        // {
+        //   this.constellations = this.allConstellations
+        // }
     },
     (error) => {
       if (error.code == error.PERMISSION_DENIED)
         console.log("You denied support for geolocation :-(")
         this.getConstellations()
-        this.constellations = this.allConstellations
+        // this.constellations = this.allConstellations
     });
   }
 
@@ -157,6 +158,9 @@ export class SkyComponent implements OnInit {
       }
       if (this.constellationList[item].month == month && this.constellationList[item].nLat > this.myLat && this.constellationList[item].sLat < this.myLat)
       {
+        this.locationConstellations.push(temp)
+      }
+      else {
         this.constellations.push(temp)
       }
 
