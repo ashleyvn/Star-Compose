@@ -25,15 +25,14 @@ export class MenubarComponent implements OnInit {
     if (this.playStatus === "Play") {
       // chnage button to stop and start audio
       this.playStatus = "Stop";
-      
       this.renderAudio.emit(true);
-      this.hideIcons("hidden")
       this.buttonPressed.emit(true);
+      this.hideIcons("hidden")
     }
     else if (this.playStatus === "Stop") {
       this.playStatus = "Play"
-      this.buttonPressed.emit(false);
       this.renderAudio.emit(false);
+      this.buttonPressed.emit(false);
       this.hideIcons("visible")
     }
   }
