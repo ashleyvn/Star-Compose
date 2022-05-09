@@ -110,9 +110,10 @@ export class SynthService {
   }
 
 // build the melody based on the star data (currently just x data)
-  playStars(constellation: {stars:Star[], connections:Connection[]}):void {
-      Tone.Transport.stop();
-      this.setTempo(60, this.screenWidth, 50);
+  playStars(constellation: {stars:Star[], connections:Connection[]}, playTime: number):void {
+    console.log("PLAYTIME: "+playTime)  
+    Tone.Transport.stop();
+      this.setTempo(playTime, this.screenWidth, 50);
       Tone.Transport.bpm.value = this.bpm;
       
       if (this.melody != null && this.bassLine != null) {

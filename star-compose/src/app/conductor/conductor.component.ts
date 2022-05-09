@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import {
   trigger,
   state,
@@ -20,13 +20,14 @@ import {
         left: '99%',
       })),
       transition('waiting => finished', [
-        animate('60s')
-      ]),
+        animate('{{time}}s')
+      ], {params: {time: 60}})
     ])
   ]
 })
 export class ConductorComponent implements OnInit {
 
+  @Input() playTime = 60;
   isPlaying: boolean = false;
   public height:number;
 

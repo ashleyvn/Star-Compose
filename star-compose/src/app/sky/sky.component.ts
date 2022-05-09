@@ -34,7 +34,7 @@ export class SkyComponent implements OnInit {
 
   constructor(private synth: SynthService) { this.width = window.innerWidth; }
 
-
+  playTime = 15;
   // Constellations in menu
   locationConstellations:Constellation[]= [];
   constellations:Constellation[] = [];
@@ -98,6 +98,11 @@ export class SkyComponent implements OnInit {
     }
     this.boolChange = 0;
   }
+
+  setPlayTime($event: number) {
+    this.playTime = $event;
+  }
+
 
   //Attempts to get user location; Gets filtered constellations if location is permitted, otherwise gets all constellations
   getLocation()
@@ -213,7 +218,7 @@ export class SkyComponent implements OnInit {
     });
     console.log(constData);
     // this.playMode = true;
-    this.synth.playStars(constData);
+    this.synth.playStars(constData, this.playTime);
   }
 
   ngOnInit(): void {

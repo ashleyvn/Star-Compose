@@ -1,14 +1,17 @@
 <mat-toolbar class="menubar">
 
     <span Style="color: white">Star Compose</span>
-    <span class="spacer"></span>
-
     <mat-button-toggle class="helpButton" (change)="this.helpButton = false" (click)="this.helpButton=!this.helpButton"><mat-icon>help</mat-icon></mat-button-toggle>
 
     <span class="spacer"></span>
 
     <button mat-raised-button class="constellationButton" #btnFocus [autofocus]="btnFocus.focus()" (click)="runConductor()">{{playStatus}}</button>
     
+    <span class="spacer"></span>
+    <mat-icon class="timer">timer</mat-icon>
+    <mat-slider #tempoSlider min="30" max="90" step="1" [value]="timeTemp" (change)="changeValue($event)" aria-label="tempo"></mat-slider>
+    <span class="time">{{tempoSlider.value}}</span>
+
     <app-dialog *ngIf="helpButton"></app-dialog>
 
 <span class="spacer"></span>
@@ -22,12 +25,25 @@
         <mat-card-content>
             <mat-icon class="currentConstellations">stars</mat-icon>
             <span class="currConstellationText">{{i.name}}</span>
+            <div>
+                <svg class="constSVG" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}"  [attr.height]="150" [attr.width]="150" >
+                    <circle #star *ngFor="let star of i.stars" [attr.cx]="star.x/2" [attr.cy]="star.y/2" r="4" fill="black"></circle>
+                    <line #connection *ngFor="let line of i.connections" [attr.x1]="line.x1/2" [attr.y1]="line.y1/2" [attr.x2]="line.x2/2" [attr.y2]="line.y2/2" style="stroke:black;stroke-width:2"></line>
+                </svg>
+            </div>
+            
         </mat-card-content>
     </mat-card>
 
     <mat-card *ngFor="let i of constellations" (click)="onSelectedConstellation(i)">
         <mat-card-content>
             {{i.name}}
+            <div>
+                <svg class="constSVG" mwlResizable [resizeSnapGrid]="{left: 30, right: 30}"  [attr.height]="150" [attr.width]="150" >
+                    <circle #star *ngFor="let star of i.stars" [attr.cx]="star.x/2" [attr.cy]="star.y/2" r="4" fill="black"></circle>
+                    <line #connection *ngFor="let line of i.connections" [attr.x1]="line.x1/2" [attr.y1]="line.y1/2" [attr.x2]="line.x2/2" [attr.y2]="line.y2/2" style="stroke:black;stroke-width:2"></line>
+                </svg>
+            </div>
         </mat-card-content>
     </mat-card>
 

@@ -29,6 +29,7 @@
     background-color:white;
     color: black;
     zoom:70%;
+    margin-left: 15px;
 }
 
 .starButton {
@@ -45,6 +46,11 @@
     margin-top: 5px;
     margin-left: 5px;
   }
+
+  .constSVG {
+      display: block; 
+      margin: auto;
+  }
   
   mat-button-toggle {
       background-color: rgba(0, 0, 0, 0.5);
@@ -56,4 +62,13 @@
 
 .static {
     position: static;    /* this didn't work */
+}
+
+.timer {
+    color: white;
+}
+
+.time {
+    color: white;
+    min-width: 25px;
 }
