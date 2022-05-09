@@ -3,7 +3,7 @@
     <span Style="color: white">Star Compose</span>
     <span class="spacer"></span>
 
-    <mat-button-toggle class="helpButton" (click)="helpButton = !helpButton"><mat-icon>help</mat-icon></mat-button-toggle>
+    <mat-button-toggle class="helpButton" (change)="this.helpButton = false" (click)="this.helpButton=!this.helpButton"><mat-icon>help</mat-icon></mat-button-toggle>
 
     <span class="spacer"></span>
 
